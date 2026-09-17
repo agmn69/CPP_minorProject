@@ -55,7 +55,7 @@ class airline{
         out.close();
         in.close();
         remove(R"(X:\GitHub\CPP_minorProject\databook.txt)");
-        rename(R"(X:\GitHub\CPP_minorProject\databook.txt)", R"(X:\GitHub\CPP_minorProject\databook.temp)");
+        rename(R"(X:\GitHub\CPP_minorProject\databook.temp)", R"(X:\GitHub\CPP_minorProject\databook.txt)");
         cout<<"Seat reserved successfully!"<<endl;
     }
 
@@ -136,6 +136,7 @@ int main() {
             // }
             Sleep(4000);
         }
+        
         else if(choice == 3){
             system("cls");
             exit = true;
