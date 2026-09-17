@@ -128,12 +128,19 @@ int main() {
                 cout<<"Sorry no seats available."<<endl;
             }
 
-            if(flight == flight3.getFlight() && flight3.getSeats() > 0){
-                flight3.update(flight);
-            }
-            else if(flight3.getSeats() < 0){
-                cout<<"Sorry no seats available."<<endl;
-            }
+            // if(flight == flight3.getFlight() && flight3.getSeats() > 0){
+            //     flight3.update(flight);
+            // }
+            // else if(flight3.getSeats() < 0){
+            //     cout<<"Sorry no seats available."<<endl;
+            // }
+            Sleep(4000);
+        }
+        else if(choice == 3){
+            system("cls");
+            exit = true;
+            cout<<"Good Luck!"<<endl;
+            Sleep(3000);
         }
     }
     return 0;
