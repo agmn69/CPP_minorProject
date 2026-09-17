@@ -56,6 +56,7 @@ class airline{
         in.close();
         remove(R"(X:\GitHub\CPP_minorProject\databook.txt)");
         rename(R"(X:\GitHub\CPP_minorProject\databook.txt)", R"(X:\GitHub\CPP_minorProject\databook.temp)");
+        cout<<"Seat reserved successfully!"<<endl;
     }
 
 };
@@ -114,7 +115,24 @@ int main() {
             cin>>flight;
 
             if(flight == flight1.getFlight() && flight1.getSeats() > 0){
-                
+                flight1.update(flight);
+            }
+            else if(flight1.getSeats() < 0){
+                cout<<"Sorry no seats available."<<endl;
+            }
+
+            if(flight == flight2.getFlight() && flight2.getSeats() > 0){
+                flight2.update(flight);
+            }
+            else if(flight2.getSeats() < 0){
+                cout<<"Sorry no seats available."<<endl;
+            }
+
+            if(flight == flight3.getFlight() && flight3.getSeats() > 0){
+                flight3.update(flight);
+            }
+            else if(flight3.getSeats() < 0){
+                cout<<"Sorry no seats available."<<endl;
             }
         }
     }
