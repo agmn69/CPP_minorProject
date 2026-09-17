@@ -11,7 +11,7 @@ class airline{
     int seats, price;
 
     public: 
-    airline(string flight, string departure, string destination, int totalSeats, int fPrice){
+    airline(string flight, string departure, string destination, int fPrice, int totalSeats){
         Flight = flight;
         dptr = departure;
         dstn = destination;
@@ -34,11 +34,34 @@ class airline{
     int getPrice(){
         return price;
     }
+    void update(string flight){
+        ifstream in(R"(X:\GitHub\CPP_minorProject\databook.txt)");
+        ofstream out(R"(X:\GitHub\CPP_minorProject\databook.temp)");
+        string line;
+        while (getline(in, line)){
+            int position = line.find(flight);
+            if(position != string::npos){
+                int current = seats-1;
+                seats = current;
+                stringstream ss;
+                ss>>current;
+                string strCurrent = ss.str();
+
+                int seatPosition = line.find_last_of("  ");
+                line.replace(seatPosition + 3, string::npos, strCurrent);
+            }
+            out<<line<<endl;
+        }
+        out.close();
+        in.close();
+        remove(R"(X:\GitHub\CPP_minorProject\databook.txt)");
+        rename(R"(X:\GitHub\CPP_minorProject\databook.txt)", R"(X:\GitHub\CPP_minorProject\databook.temp)");
+    }
 
 };
 
 void display(){
-    ifstream in(R"(C:\Users\Lenovo\Downloads\AviationSys\databook.txt)");
+    ifstream in(R"(X:\GitHub\CPP_minorProject\databook.txt)");
 
     if(!in){
         cout<<"Couldn'd read file."<<endl;
@@ -52,19 +75,19 @@ void display(){
 }
 
 int main() {
-    airline flight1("MH371", "Singapore", "London", 221, 1200);
-    airline flight2("AI771", "India", "Frankfurt", 142, 880);
+    airline flight1("MH371", "Singapore", "London", 1200, 221);
+    airline flight2("AI771", "India", "Frankfurt", 880, 124);
 
-    ofstream out(R"(C:\Users\Lenovo\Downloads\AviationSys\databook.txt)");
+    ofstream out(R"(X:\GitHub\CPP_minorProject\databook.txt)");
     if(!out){
         cout<<"Couldn't access file."<<endl;
     }
     else{
-        out<<flight1.getFlight()<<"   "<<flight1.getDepr()<<"   "<<flight1.getDestn()<<"   "<<flight1.getSeats()<<"   "
-        <<flight1.getPrice()<<endl<<endl;
+        out<<flight1.getFlight()<<"   "<<flight1.getDepr()<<"   "<<flight1.getDestn()<<"   "<<flight1.getPrice()<<"   "
+        <<flight1.getSeats()<<endl<<endl;
 
-        out<<flight2.getFlight()<<"   "<<flight2.getDepr()<<"   "<<flight2.getDestn()<<"   "<<flight2.getSeats()<<"   "
-        <<flight2.getPrice()<<endl<<endl;
+        out<<flight2.getFlight()<<"   "<<flight2.getDepr()<<"   "<<flight2.getDestn()<<"   "<<flight2.getPrice()<<"   "
+        <<flight2.getSeats()<<endl<<endl;
         cout<<"Data Saved!"<<endl;
         out.close();
     }
